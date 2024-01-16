@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import encryptedMessagesAtom from '../../recoil/encrypted/atom';
+import encryptedMessagesAtom, { EncryptedMessage } from '../../recoil/encrypted/atom';
 import keyArnAtom from '../../recoil/key/atom';
 import { Alert, Box, Button, Container, FormField, Grid, Header, Input, Pagination, SpaceBetween } from '@cloudscape-design/components';
 import { UnifiedAppLayout } from '../../components/common/unified-app-layout';
@@ -14,10 +14,14 @@ export const Encryption = () => {
 
   const { mutate: encryptMessage } = useEncryptMessage({
     onSuccess: (result: any) => {
+      const encryptedMessage: EncryptedMessage = {
+        cipherTextBlob: result.body.cipher_text_blob,
+        encryptedData: result.body.encrypted_data,
+      }
       setEncryptedMessages(
         prev => [
           ...prev,
-          result.ciphering,
+          encryptedMessage,
         ]
       );
     }
@@ -25,6 +29,7 @@ export const Encryption = () => {
 
   useEffect(() => {
     setCurrentPageIndex(encryptedMessages.length - 1);
+    console.log(encryptedMessages);
   }, [encryptedMessages]);
 
   const onEncryptMessage = useCallback(() => {
@@ -87,10 +92,31 @@ export const Encryption = () => {
                     Encrypted messages will appear here :) 
                   </Alert>
                 }
-                {encryptedMessages && encryptedMessages.length > 0 && 
+                {encryptedMessages && encryptedMessages.length > 0 && encryptedMessages[currentPageIndex] && 
                   <>
                     <Container fitHeight>
-                      {encryptedMessages[currentPageIndex]}
+                      <SpaceBetween size="l">
+                        <Container
+                          header={
+                            <Header variant="h3">
+                              Cipher Text Blob
+                            </Header>
+                          }
+                          fitHeight
+                        >
+                          {encryptedMessages[currentPageIndex].cipherTextBlob}
+                        </Container>
+                        <Container
+                          header={
+                            <Header variant="h3">
+                              Encrypted Data
+                            </Header>
+                          }
+                          fitHeight
+                        >
+                          {encryptedMessages[currentPageIndex].encryptedData}
+                        </Container>
+                      </SpaceBetween>
                     </Container>
                     <Pagination
                       currentPageIndex={currentPageIndex + 1}

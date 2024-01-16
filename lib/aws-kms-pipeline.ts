@@ -52,7 +52,8 @@ export class AWSKMSWorkshopPipeline extends cdk.Stack {
             },
             commands: [
               "cd site-contents",
-              "npm ci",
+              "npm install",
+              "ls",
               "npm run build",
               "aws s3 cp ./src/build s3://$BUCKET_NAME/frontend --recursive",
               `aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*"`,

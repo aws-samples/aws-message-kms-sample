@@ -8,21 +8,18 @@ interface DecryptMessageInput {
 
 export const useDecryptMessage = (options: UseMutationOptions<unknown, unknown, DecryptMessageInput>) => {
   return useMutation('decryptMessage', async (input: DecryptMessageInput) => {
-    if (!process.env.REACT_PUBLIC_API_URL) {
-      return null;
-    }
     const { cipherTextBlob: cipher_text_blob, encryptedData: encrypted_data } = input;
-    const { data } = await axios.post(
-      process.env.REACT_PUBLIC_API_URL + 'decryption',
-      {
-        cipher_text_blob,
-        encrypted_data
-      }
-    );
-
-    // const { data } = await axios.get(
-    //   process.env.REACT_PUBLIC_API_URL+'decrypt',
+    // const { data } = await axios.post(
+    //   'https://api.url.here',
+    //   {
+    //     cipher_text_blob,
+    //     encrypted_data
+    //   }
     // );
+
+    const { data } = await axios.get(
+      'http://localhost:8080/encrypt',
+    );
     return data;
   }, options);
 };
