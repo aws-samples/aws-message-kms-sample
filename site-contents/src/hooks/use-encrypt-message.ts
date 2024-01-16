@@ -24,12 +24,12 @@ export const useEncryptMessage = (options: UseMutationOptions<unknown, unknown, 
     //   process.env.REACT_PUBLIC_API_URL+'encrypt',
     // );
 
-    return {
-      body: {
-        cipher_text_blob: 'cipher',
-        encrypted_data: 'encrypted_data',
-      }
-    }
-    // return data;
+    // return {
+    //   body: {
+    //     cipher_text_blob: 'cipher',
+    //     encrypted_data: 'encrypted_data',
+    //   }
+    // }
+    return data;
   }, options);
 };
