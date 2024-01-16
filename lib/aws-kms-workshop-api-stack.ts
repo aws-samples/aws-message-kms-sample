@@ -138,7 +138,6 @@ export class AwsKmsWorkshopApiStack extends cdk.Stack {
       enableKeyRotation: true,
       removalPolicy: cdk.RemovalPolicy.DESTROY
     });
-    kmskey.addAlias('alias/kmsworkshop');
     kmskey.grantEncrypt(encryption_handler);
     kmskey.grantDecrypt(decryption_handler);
     
