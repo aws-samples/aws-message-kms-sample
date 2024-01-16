@@ -26,6 +26,8 @@
   },
   "exclude": [
     "node_modules",
-    "cdk.out"
+    "cdk.out",
+    "site-contents"
   ]
+  
 }

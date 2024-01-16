@@ -1,0 +1,35 @@
+.top-nav span {
+  overflow: visible !important;
+  color: #d1d5db;
+}
+
+.key-icon {
+  stroke-width: 3px !important;
+}
+
+.badge {
+  padding-left: 6px;
+  padding-right: 6px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 12px;
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.label-warning[href],
+.badge-warning[href] {
+  background-color: #c67605;
+}
+#lblCartCount {
+    position: relative;
+    font-size: 12px;
+    background: #ff0000;
+    color: #fff;
+    bottom: 32px;
+    left: 12px;
+}

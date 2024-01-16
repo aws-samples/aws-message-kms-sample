@@ -1,0 +1,4 @@
+{
+  "plainmessage": "hello kms!",
+  "keyid": "arn:aws:kms:us-east-1:566034038752:key/8c1c096e-220c-449f-998b-2d64ddb15bd0"
+}

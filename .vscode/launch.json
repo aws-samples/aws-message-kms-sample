@@ -1,0 +1,61 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+        "type": "pwa-chrome",
+        "request": "launch",
+        "name": "Launch Chrome against localhost",
+        "url": "http://localhost:3000",
+        "webRoot": "${workspaceFolder}/site-contents"
+    },
+    {
+      "type": "aws-sam",
+      "request": "direct-invoke",
+      "name": "Invoke Lambda encryption",
+      "invokeTarget": {
+        "target": "code",
+        "lambdaHandler": "lambda/kmsencryption.handler",
+        "projectRoot": "${workspaceFolder}"
+      },
+      "lambda": {
+        "runtime": "python3.12",
+        "payload": {
+          "json": {
+            "plainmessage": "hello kms!",
+            "keyid": "arn:aws:kms:us-east-1:566034038752:key/62e9dae1-d290-41e5-bba1-09e4a76e62c4"
+          }
+        }
+      }
+    },
+    {
+      "type": "aws-sam",
+      "request": "direct-invoke",
+      "name": "Invoke Lambda decryption",
+      "invokeTarget": {
+        "target": "code",
+        "lambdaHandler": "lambda/kmsdecryption.handler",
+        "projectRoot": "${workspaceFolder}"
+      },
+      "lambda": {
+        "runtime": "python3.12",
+        "payload": {
+          "json": {
+            "encrypted_data": "Vl{7SazQ~yMORKRbt_CXOK@jpK{$0!b5>A9L}5}%ST$H!YIs;Lc1=Y+",
+            "cipher_text_blob": "0RjU6c$7SrolFbxYEc`-q&s2=lpUDO^r&ab;A(I&{XFWgqXF<8;<Nkg;&<7IpJQQaQdR%}0Ddrh1_>&LNQU<f0S5-4Z!m2F0RS*)1_>&LNQU<f0S5sv9tH_uhDZTr0|WssFcAa{o!6YJBWi)dxi$z;0s#<!J8M~NDDiGqQiDNSrf_$0N?|At?&4!?4Z=I^0}-0Penj`0%TE2X1tqE^oC=t*u@xrd0^D(?Cj8&A"
+          }
+        }
+      }
+    },
+    {
+      "name": "Python: Current File",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    }
+  ]
+}
