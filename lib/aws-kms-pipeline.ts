@@ -51,7 +51,7 @@ export class AWSKMSWorkshopPipeline extends cdk.Stack {
               DISTRIBUTION_ID: appStage.cfnOutDistributionId,
             },
             commands: [
-              "cd frontend",
+              "cd site-contents",
               "npm ci",
               "npm run build",
               "aws s3 cp ./src/build s3://$BUCKET_NAME/frontend --recursive",
