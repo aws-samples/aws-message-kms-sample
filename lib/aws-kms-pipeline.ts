@@ -45,17 +45,17 @@ export class AWSKMSWorkshopPipeline extends cdk.Stack {
         post: [
           new ShellStep("DeployFrontEnd", {
             envFromCfnOutputs: {
-              REACT_PUBLIC_CLOUDFRONT_URL: appStage.cfnOutCloudFrontUrl,
-              REACT_PUBLIC_API_URL: appStage.cfnOutApiUrl,
+              REACT_APP_PUBLIC_CLOUDFRONT_URL: appStage.cfnOutCloudFrontUrl,
+              REACT_APP_PUBLIC_API_URL: appStage.cfnOutApiUrl,
               BUCKET_NAME: appStage.cfnOutBucketName,
               DISTRIBUTION_ID: appStage.cfnOutDistributionId,
             },
             commands: [
               "cd site-contents",
+              "echo REACT_APP_API_KEY=$REACT_APP_API_KEY > .env",
               "npm install",
-              "ls",
               "npm run build",
-              "aws s3 cp ./src/build s3://$BUCKET_NAME/frontend --recursive",
+              "aws s3 cp ./build s3://$BUCKET_NAME --recursive",
               `aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*"`,
             ],
           }),
