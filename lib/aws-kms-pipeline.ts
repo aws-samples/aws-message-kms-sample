@@ -4,14 +4,15 @@ import * as codecommit from 'aws-cdk-lib/aws-codecommit';
 import {WorkshopAppStage} from './stage-app';
 import {CodeBuildStep, CodePipeline, CodePipelineSource, ShellStep} from "aws-cdk-lib/pipelines";
 import * as iam from "aws-cdk-lib/aws-iam";
-
+import path = require('path');
 export class AWSKMSWorkshopPipeline extends cdk.Stack {
     constructor(scope: Construct, id: string, props?: cdk.StackProps) {
       super(scope, id, props);
 
       // Repository
-      const repository = new codecommit.Repository(this, 'WorkshopRepo', {
-        repositoryName: "WorkshopRepo"
+      const repository = new codecommit.Repository(this, 'KMSWorkshopRepository', {
+        repositoryName: "KMSWorkshopRepository",
+//        code: codecommit.Code.fromDirectory(path.join(__dirname, '../') , 'main'), // optional property, branch parameter can be omitted
       });
 
       // CDK Pipeline

@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { 
+import {
   AppLayout,
   Box,
   Button,
@@ -17,13 +17,13 @@ export type UnifiedAppLayoutProps = {
   content: JSX.Element
 }
 
-export const UnifiedAppLayout = ({content}: UnifiedAppLayoutProps) => {
+export const UnifiedAppLayout = ({ content }: UnifiedAppLayoutProps) => {
   const navigate = useNavigate();
 
   const onEncryptionClick = useCallback(() => {
     navigate('/encryption');
   }, [navigate]);
-  
+
   const onDecryptionClick = useCallback(() => {
     navigate('/decryption');
   }, [navigate]);
@@ -38,7 +38,7 @@ export const UnifiedAppLayout = ({content}: UnifiedAppLayoutProps) => {
                 variant="div"
                 margin={{ top: "l" }}
               >
-                
+
                 <Header
                   variant="h1"
                 >
@@ -52,23 +52,23 @@ export const UnifiedAppLayout = ({content}: UnifiedAppLayoutProps) => {
           }
         >
           <SpaceBetween size="m">
-          <Container>
-            <Grid
-              gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}
-            >
-              <Box textAlign='center'>
-                <Button variant="primary" onClick={onEncryptionClick}>
-                  Encryption
-                </Button>
-              </Box>
-              <Box textAlign='center'>
-                <Button variant="primary" onClick={onDecryptionClick}>
-                  Decryption
-                </Button>
-              </Box>
-            </Grid>
-          </Container>
-          {content}
+            <Container>
+              <Grid
+                gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}
+              >
+                <Box textAlign='center'>
+                  <Button variant="primary" onClick={onEncryptionClick}>
+                    Encryption
+                  </Button>
+                </Box>
+                <Box textAlign='center'>
+                  <Button variant="primary" onClick={onDecryptionClick}>
+                    Decryption
+                  </Button>
+                </Box>
+              </Grid>
+            </Container>
+            {content}
           </SpaceBetween>
         </ContentLayout>
       }

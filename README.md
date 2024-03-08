@@ -29,7 +29,7 @@ Deploying stacks with the AWS CDK requires dedicated Amazon S3 buckets and other
 cdk bootstrap
 ```
 
-#### CDK Build, Deploy
+#### CDK Pipeline Build, Deploy
 
 Run npm install in the project folder
 This command installs the dependency packages defined in package.json.
@@ -52,11 +52,32 @@ The AWS resources defined in the CDK app will be provisioned.
 cdk deploy
 ```
 
-#### How to use
+You can see that the cdk pipeline has been created.
 
+![stack](./resources/kmspipeline.png)
+
+#### Setup
+
+Copy the code of RepositoryCloneUrlHttp from the output of AwsKmsWorkshopPipeline stack. Change the URL of git remote origin to the copied repository address.
+
+```
+git remote set-url origin <copied RepositoryCloneUrlHttp>
+```
+
+push code to repository
+
+```
+git push --set-upstream origin main
+```
+
+Check that the Pipeline-AwsKmsWorkshopPipeline of the code pipeline is completed.
 App-KMSWorkshopApp, App-KMSWorkshopAPI stacks in CloudFormation were created.
-You can get link staticweb address in the output of KMSWorkshopApp.
+
 ![stack](./resources/kmsworkshop-cloudformation-stack.png)
+
+You can get link staticweb address in the output of KMSWorkshopApp.
+
+#### How to use
 
 Click encryption button, enter the value of kmsarn in the output of the App-KMS Workshop API stack in KMS key ARN, and enter the content to be encrypted in Message.
 
