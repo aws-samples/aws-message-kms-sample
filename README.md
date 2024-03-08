@@ -84,3 +84,11 @@ Click encryption button, enter the value of kmsarn in the output of the App-KMS 
 ![page](./resources/kmsworkshop-page.png)
 
 Click the encrypt button to get Cipher Text Blob and Encrypted Data. You can also copy it and decrypt it.
+
+## Security
+
+See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
+
+## License
+
+This library is licensed under the MIT-0 License. See the LICENSE file.
